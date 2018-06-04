@@ -1,0 +1,37 @@
+<% include ../styling/header %>
+
+<div class = "container">
+	<header class = "jumbotron">
+		<div class="container" id = "searchdesc">
+			<h1 id = "hiddencampersgreeting"><span class="glyphicon glyphicon-tent align-bottom" aria-hidden="true"></span> Welcome, Hidden Campers!</h1>
+			<div>
+				<p>View premium campsites across New England</p>
+				<form class="form-inline" action="/campsites" method="GET">
+					<div class="form-group has-feedback">
+						<label for="search"></label>
+						<input class="form-control" type="text" name="search" placeholder="Enter a location" autocomplete="off" />
+						<span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+					</div>
+				</form>
+			</div>
+		</div>
+	</header>
+
+	<div class="row text-center" style="display:flex; flex-wrap: wrap;">
+		<% campsites.forEach(function(campsite){ %>
+		<div class="col-md-3 col-sm-6">
+			<div class="thumbnail">
+
+				<a href="/campsites/<%= campsite._id %>"><img class="gridhome" src="<%= campsite.image %>" >
+
+					<div class="caption">
+						<h4> <%= campsite.name%> </h4>
+						<h5><%= campsite.location %></h5>
+					</div>
+				</div>
+			</div>
+			<% }); %>
+		</div>
+	</div>
+
+	<% include ../styling/footer %>

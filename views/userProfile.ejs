@@ -1,0 +1,41 @@
+<% include ./styling/header %> 
+
+<h1 id="userGreeting"> Hi, <%= currentUser.firstName %> <%= currentUser.lastName %> </h1>
+
+<div class="container">
+	<div class="row">
+		<div id= "accountdetails" class="col-md-3">
+			<p class="lead">Your account details :</p>
+			<h4 class="userprofile"> First Name : <span id="userdetails"><%= currentUser.firstName %></span></h4>
+			<h4 class="userprofile"> Last Name : <span id="userdetails"><%= currentUser.lastName %></span></h4>
+			<h4 class="userprofile"> Email : <span id="userdetails"><%= currentUser.email %></span></h4>
+			<h4 class="userprofile"> Username : <span id="userdetails"><%= currentUser.username %></span></h4>
+		</div>
+		<div class="col-md-9">
+			<p class="lead">Campsites you've added so far:</p>
+			<div class="row text-center" style="display:flex; flex-wrap: wrap;">
+				<% campsites.forEach(function(campsite){ %>
+				<div class="col-md-3 col-sm-6">
+					<div class="thumbnail">
+						<a href="/campsites/<%= campsite._id %>"><img class="gridhome" src="<%= campsite.image %>" >
+							<div class="profilethumbnail" class="caption">
+								<h4 class="profilethumbnail"> <%= campsite.name%> </h4>
+								<h5 class="profilethumbnail"><%= campsite.location %></h5>
+								<div class="form-group">
+									<a href="/campsites/<%= campsite._id %>/edit"><button class="btn btn-warning ">Edit</button></a>
+									<form class="delete-form" action="/campsites/<%= campsite._id %>?_method=DELETE" method="POST">
+										<button class="btn btn-danger ">Delete</button>
+									</form>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+				<% }); %>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<% include ./styling/footer %> 
